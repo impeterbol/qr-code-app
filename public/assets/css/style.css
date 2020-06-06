@@ -1,0 +1,32 @@
+nav{
+  
+  margin: 5px;
+  width: 99.5%;
+}
+
+.container{
+    max-width: 900px;
+    margin-left: 3px;
+    margin-top: 50px;
+   
+}
+
+.container table, .qrGeneral{
+    margin-left:7px;
+   
+}
+
+.mainRepWord{
+    color: red;
+    font-weight: bold;
+}
+
+img{
+    margin: 30px auto 15px 10px;
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.copyright{
+    margin-left: 1px;;
+}
