@@ -22,8 +22,19 @@ connection.once("open", function() {
 //schema
 
 var nameSchema = new mongoose.Schema({
-    firstName: String,
-    lastName: String
+    number: String,
+    date: String,
+    object: String,
+    id: String,
+    weight: String,
+    dimension: String,
+    cut: String,
+    shape: String,
+    color: String,
+    comment: String,
+    comment2: String,
+    origin: String
+
   });
 
   //model
@@ -62,9 +73,9 @@ app.get("/", (req, res) => {
     });
   });
 
-  router.route("/:name").get(function(req, res) {
-    User.findOne({
-        name: req.params._id
+  router.route("/:_id").get(function(req, res) {
+    User.find({
+        _id: req.params._id
     }, function(err, result) {
       if (err) {
         res.send(err);
