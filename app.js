@@ -1,57 +1,78 @@
 let express = require ('express');
+let port = 3000;
 let app = express();
-let MongoClient = require('mongodb').MongoClient;
+const router = express.Router();
+let mongoose = require("mongoose")
+let url = "mongodb://localhost:27017/peterdb";
+let bodyParser = require('body-parser');
 
-// URL of local or remote MongoDB instance
-var url = "mongodb://localhost:27017/";
+mongoose.Promise = global.Promise;
+mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true });
 
-app.listen(3000,()=> console.log("server is running on port 3000"));
+const connection = mongoose.connection;
+
+connection.once("open", function() {
+    console.log("MongoDB database connection established successfully");
+  });
+
+  app.use("/", router);
+
+  app.listen(port,()=> console.log("server is running on " + port));
+
+//schema
+
+var nameSchema = new mongoose.Schema({
+    firstName: String,
+    lastName: String
+  });
+
+  //model
+  var User = mongoose.model("User", nameSchema);
+
 // define a middleware that can be used by the server to read JSON payload.
-app.use(express.json());
-
-//tests
-// app.get("/:number", (req, res) => {
-//     res.send(req.params.number);
-//     console.log(req.params.number);
-// });
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
-//post
 
-app.post('/', (req, res) => {
-    MongoClient.connect(url, function(err, db) {
-        if (err) throw err;
-        var dbo = db.db("users");
-        dbo.collection("customers").insertOne({
-            name: req.body.name,
-            age: req.body.age
-        }, 
-        function(err, result) {
-            if (err) throw err;
-            res.json(result);
-            db.close();
-        });
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/index.html");
+  });
+
+
+  app.post("/addname", (req, res) => {
+    var myData = new User(req.body);
+    
+    myData.save()
+      .then(item => {
+        res.send(myData._id + " thanks!");
+      })
+      .catch(err => {
+        res.status(400).send("unable to save to database");
+      });
+  });
+
+  router.route("/fetch").get(function(req, res) {
+    User.find({}, function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(result);
+      }
     });
-});
+  });
 
-// get
-
-app.get('/:name', (req, res) => {
-    MongoClient.connect(url, function(err, db) {
-        if (err) throw err;
-        var dbo = db.db("users");
-        dbo.collection("customers").findOne({
-            name: req.params.name
-        }, 
-        function(err, result) {
-            if (err) throw err;
-            res.json(result);
-            db.close();
-        });
+  router.route("/:name").get(function(req, res) {
+    User.findOne({
+        name: req.params._id
+    }, function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(result);
+      }
     });
-});
-
-
+  });
 
 
 
