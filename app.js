@@ -1,10 +1,15 @@
-let express = require ('express');
-let port = 3000;
+const express = require ('express');
+const mongoose = require("mongoose");
+const PORT = process.env.PORT || 3000;
+// const db = require("./models")
+
 let app = express();
+app.set('view engine', 'ejs');
 const router = express.Router();
-let mongoose = require("mongoose")
+
 let url = "mongodb://localhost:27017/peterdb";
 let bodyParser = require('body-parser');
+
 
 mongoose.Promise = global.Promise;
 mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true });
@@ -13,11 +18,12 @@ const connection = mongoose.connection;
 
 connection.once("open", function() {
     console.log("MongoDB database connection established successfully");
+
+    app.listen(PORT,()=> console.log("server is running on " + PORT));
   });
 
-  app.use("/", router);
 
-  app.listen(port,()=> console.log("server is running on " + port));
+  
 
 //schema
 
@@ -51,7 +57,14 @@ app.get("/", (req, res) => {
   });
 
 
-  app.post("/addname", (req, res) => {
+  app.get("/123", (req, res) => {
+    res.render("products")
+  });
+
+
+
+
+app.post("/addname", (req, res) => {
     var myData = new User(req.body);
     
     myData.save()
@@ -63,7 +76,7 @@ app.get("/", (req, res) => {
       });
   });
 
-  router.route("/fetch").get(function(req, res) {
+  app.get("/fetch", function(req, res) {
     User.find({}, function(err, result) {
       if (err) {
         res.send(err);
@@ -73,14 +86,15 @@ app.get("/", (req, res) => {
     });
   });
 
-  router.route("/:_id").get(function(req, res) {
+ app.get("/:_id",function(req, res) {
     User.find({
         _id: req.params._id
-    }, function(err, result) {
+    }, function(err, data) {
+       console.log(data)
       if (err) {
         res.send(err);
       } else {
-        res.send(result);
+        res.render("products", {results:data});
       }
     });
   });

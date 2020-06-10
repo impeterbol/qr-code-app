@@ -1,0 +1,14 @@
+
+<h1>This is the page user sees</h1>
+
+
+
+    <h2><%= results.firstName %></h2>
+
+    <ul>
+        <% results.forEach(function(result){ %>
+         <li> <%= result.number%></li>
+         <li> <%= result.date%></li>
+        <% }); %>
+      </ul>
+  
