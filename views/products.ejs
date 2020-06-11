@@ -1,14 +1,168 @@
 
-<h1>This is the page user sees</h1>
 
 
-
-    <h2><%= results.firstName %></h2>
+    <!-- <h2><%= results.firstName %></h2>
 
     <ul>
         <% results.forEach(function(result){ %>
          <li> <%= result.number%></li>
          <li> <%= result.date%></li>
         <% }); %>
-      </ul>
+      </ul> -->
   
+      <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <!--Import FontAwesome-->
+ <script src="https://use.fontawesome.com/f9a4b2dd3a.js"></script>
+ <!-- import Raleway font -->
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,800&display=swap" rel="stylesheet">
+   <!-- adding reset css -->
+
+   <link rel="stylesheet" href="./public/assets/css/reset.css">
+
+   <!-- Compiled and minified materialize -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+   <!-- my personal css -->
+   <link rel="stylesheet" href="./public/assets/css/style.css">
+
+   
+
+
+    <title>Here is the name of the website</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark danger-color-dark">
+        <a class="navbar-brand" href="#">Name or Logo</a>
+</nav>
+
+    <div class="container ">
+       
+        <div class="row">
+            <div class="col">
+            <p class="mainRepWord">Report info</p> 
+             </div>
+        </div>
+        <div class="row">
+            <div class="col">
+             Image goes here
+             </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-6"> 
+        <table class="table-borderless">
+           
+            <tbody>
+                <% results.forEach(function(result){ %>
+              <tr>
+                <th scope="row">Number</th>
+                <td><%= result.number%></td>
+                
+              </tr>
+
+              <tr>
+                <th scope="row">Date</th>
+                <td><%= result.date%></td>
+              </tr>
+
+              <tr>
+                <th scope="row">Object</th>
+                <td colspan="2"><%= result.object%></td>
+               </tr>
+
+              <tr>
+                <th scope="row">Identification</th>
+                <td><%= result.id%></td>
+              </tr>
+
+              <tr>
+                <th scope="row">Weight</th>
+                <td><%= result.weight%></td>
+              </tr>
+
+              <tr>
+                <th scope="row">Dimension</th>
+                <td><%= result.dimension%></td>
+              </tr>
+
+              <tr>
+                <th scope="row">Cut</th>
+                <td><%= result.cut%></td>
+              </tr>
+
+              <tr>
+                <th scope="row">Shape</th>
+                <td><%= result.shape%></td>
+              </tr>
+              <tr>
+                <th scope="row">Color</th>
+                <td><%= result.color%></td>
+              </tr>
+              <tr>
+                <th scope="row">Comment</th>
+                <td><%= result.comment%></td>
+              </tr>
+              <tr>
+                <th scope="row">Comment 2:</th>
+                <td><%= result.comment2%></td>
+              </tr>
+              <tr>
+                <th scope="row">Origin</th>
+                <td><%= result.origin%></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+          </div>
+          
+          <div class="col"> 
+              </div>
+              <div class="col"> 
+            </div>
+        </div>
+
+        
+
+            <div class="row">
+                 <div class="col-12"> 
+                    <p class="qrGeneral">Qr code contains a direct link to this report's verification page.</p>
+
+                    <img src="../public/assets/img/demoQe.png" alt="qr code">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12"> 
+                   <p class="linkText">Direct link to the verification page:
+                       http:/thisisthelink/.</p>
+               </div>
+           </div>
+        
+           <div class="row">
+            <div class="col-12"> 
+               <p class="copyright">(c) 2018 text about company and a few links</p>
+           </div>
+       </div>
+
+
+
+
+
+
+
+ </div>
+
+
+
+
+
+   <!-- materialize css -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+   <!-- Compiled and minified materialize js -->
+    <script type="text/javascript" src="./public/assets/js/script.js"></script>
+</body>
+</html>
