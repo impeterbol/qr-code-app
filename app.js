@@ -57,24 +57,23 @@ app.get("/", (req, res) => {
   });
 
 
-  app.get("/123", (req, res) => {
-    res.render("products")
-  });
-
-
 
 
 app.post("/addname", (req, res) => {
     var myData = new User(req.body);
-    
+    var thisIsId = myData._id;
+    var thisIsUrl = `http://localhost3000/${thisIsId}`;
     myData.save()
+
       .then(item => {
-        res.send(myData._id + " thanks!");
+        res.send(thisIsUrl + " thanks!");
       })
+      
       .catch(err => {
         res.status(400).send("unable to save to database");
       });
   });
+  
 
   app.get("/fetch", function(req, res) {
     User.find({}, function(err, result) {
@@ -86,14 +85,18 @@ app.post("/addname", (req, res) => {
     });
   });
 
- app.get("/:_id",function(req, res) {
+ app.get("/:id",function(req, res) {
+    var thisIsId = req.params.id;
+   
+
     User.find({
-        _id: req.params._id
+        _id: thisIsId
     }, function(err, data) {
-       console.log(data)
+     
       if (err) {
         res.send(err);
       } else {
+          console.log("HERE!")
         res.render("products", {results:data});
       }
     });

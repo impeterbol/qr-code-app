@@ -114,7 +114,7 @@
                 <th scope="row">Origin</th>
                 <td><%= result.origin%></td>
               </tr>
-              <% }); %>
+             
             </tbody>
           </table>
           </div>
@@ -131,14 +131,15 @@
                  <div class="col-12"> 
                     <p class="qrGeneral">Qr code contains a direct link to this report's verification page.</p>
 
-                    <img src="../public/assets/img/demoQe.png" alt="qr code">
+                    <div id="qrcode"></div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-12"> 
                    <p class="linkText">Direct link to the verification page:
-                       http:/thisisthelink/.</p>
+                       http://localhost3000/<%= result._id%>.</p>
+                       <% }); %>
                </div>
            </div>
         
@@ -155,7 +156,6 @@
 
 
  </div>
-
 
 
 
