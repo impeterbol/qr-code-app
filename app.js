@@ -1,5 +1,6 @@
 const express = require ('express');
 const mongoose = require("mongoose");
+const ejs = require('ejs');
 const PORT = process.env.PORT || 3000;
 // const db = require("./models")
 
@@ -62,11 +63,13 @@ app.get("/", (req, res) => {
 app.post("/addname", (req, res) => {
     var myData = new User(req.body);
     var thisIsId = myData._id;
-    var thisIsUrl = `http://localhost3000/${thisIsId}`;
+    var thisIsUrl = `http://localhost:3000/${thisIsId}`;
     myData.save()
 
       .then(item => {
-        res.send(thisIsUrl + " thanks!");
+          console.log(item._id);
+          console.log({item:item});
+        res.render("success", {item});
       })
       
       .catch(err => {
@@ -85,6 +88,8 @@ app.post("/addname", (req, res) => {
     });
   });
 
+
+
  app.get("/:id",function(req, res) {
     var thisIsId = req.params.id;
    
@@ -96,6 +101,9 @@ app.post("/addname", (req, res) => {
       if (err) {
         res.send(err);
       } else {
+
+     
+
           console.log("HERE!")
         res.render("products", {results:data});
       }

@@ -1,15 +1,4 @@
 
-
-
-    <!-- <h2><%= results.firstName %></h2>
-
-    <ul>
-        <% results.forEach(function(result){ %>
-         <li> <%= result.number%></li>
-         <li> <%= result.date%></li>
-        <% }); %>
-      </ul> -->
-  
       <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +21,7 @@
    
 
 
-    <title>Here is the name of the website</title>
+    <title>Added new item</title>
 </head>
 <body>
     <nav class="navbar navbar-dark danger-color-dark">
@@ -43,80 +32,25 @@
        
         <div class="row">
             <div class="col">
-            <p class="mainRepWord">Report info</p> 
+            <p class="mainRepWord">Added new item under ID</p> 
              </div>
         </div>
-        <div class="row">
-            <div class="col">
-             Image goes here
-             </div>
-        </div>
+        
         
         <div class="row">
             <div class="col-6"> 
         <table class="table-borderless">
            
-            <tbody>
-                <% results.forEach(function(result){ %>
-              <tr>
-                <th scope="row">Number</th>
-                <td><%= result.number%></td>
+        
+            <% if (item) { %>
+                <h2><%= item._id %></h2>
+                
                 
               </tr>
 
-              <tr>
-                <th scope="row">Date</th>
-                <td><%= result.date%></td>
-              </tr>
+              
 
-              <tr>
-                <th scope="row">Object</th>
-                <td colspan="2"><%= result.object%></td>
-               </tr>
-
-              <tr>
-                <th scope="row">Identification</th>
-                <td><%= result.id%></td>
-              </tr>
-
-              <tr>
-                <th scope="row">Weight</th>
-                <td><%= result.weight%></td>
-              </tr>
-
-              <tr>
-                <th scope="row">Dimension</th>
-                <td><%= result.dimension%></td>
-              </tr>
-
-              <tr>
-                <th scope="row">Cut</th>
-                <td><%= result.cut%></td>
-              </tr>
-
-              <tr>
-                <th scope="row">Shape</th>
-                <td><%= result.shape%></td>
-              </tr>
-              <tr>
-                <th scope="row">Color</th>
-                <td><%= result.color%></td>
-              </tr>
-              <tr>
-                <th scope="row">Comment</th>
-                <td><%= result.comment%></td>
-              </tr>
-              <tr>
-                <th scope="row">Comment 2:</th>
-                <td><%= result.comment2%></td>
-              </tr>
-              <tr>
-                <th scope="row">Origin</th>
-                <td><%= result.origin%></td>
-              </tr>
-             
-            </tbody>
-          </table>
+           
           </div>
           
           <div class="col"> 
@@ -138,8 +72,8 @@
             <div class="row">
                 <div class="col-12"> 
                    <p class="linkText">Direct link to the verification page:
-                       http://localhost:3000/<%= result._id%>.</p>
-                       <% }); %>
+                       http://localhost:3000/<%= item._id%>.</p>
+                       <% }; %>
                </div>
            </div>
         
