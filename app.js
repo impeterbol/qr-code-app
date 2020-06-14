@@ -1,6 +1,6 @@
 const express = require ('express');
 const mongoose = require("mongoose");
-const ejs = require('ejs');
+var QRCode = require('qrcode');
 const PORT = process.env.PORT || 3000;
 // const db = require("./models")
 
@@ -102,10 +102,11 @@ app.post("/addname", (req, res) => {
         res.send(err);
       } else {
 
-     
-
-          console.log("HERE!")
-        res.render("products", {results:data});
+        QRCode.toDataURL(`http://localhost:3000/${thisIsId}`, function (err, url) {
+            
+            res.render("products",{results:data, qr:url});
+            });
+         
       }
     });
   });

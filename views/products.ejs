@@ -1,14 +1,5 @@
 
 
-
-    <!-- <h2><%= results.firstName %></h2>
-
-    <ul>
-        <% results.forEach(function(result){ %>
-         <li> <%= result.number%></li>
-         <li> <%= result.date%></li>
-        <% }); %>
-      </ul> -->
   
       <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +25,8 @@
 
     <title>Here is the name of the website</title>
 </head>
+
+
 <body>
     <nav class="navbar navbar-dark danger-color-dark">
         <a class="navbar-brand" href="#">Name or Logo</a>
@@ -50,6 +43,8 @@
             <div class="col">
              Image goes here
              </div>
+
+            
         </div>
         
         <div class="row">
@@ -131,7 +126,7 @@
                  <div class="col-12"> 
                     <p class="qrGeneral">Qr code contains a direct link to this report's verification page.</p>
 
-                    <div id="qrcode"></div>
+                    <div id="qrcode"><img src="<%= qr %>"></div>
                 </div>
             </div>
 
@@ -140,6 +135,9 @@
                    <p class="linkText">Direct link to the verification page:
                        http://localhost:3000/<%= result._id%>.</p>
                        <% }); %>
+
+                       
+
                </div>
            </div>
         
