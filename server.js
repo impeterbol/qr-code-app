@@ -1,14 +1,14 @@
 const express = require ('express');
+const app = express();
 const mongoose = require("mongoose");
 const QRCode = require('qrcode');
 const PORT = process.env.PORT || 3000;
 const User = require("./models/User")
-
-let app = express();
-let url = "mongodb://localhost:27017/peterdb";
-let bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 //adding ejs for dynamic rendering
 app.set('view engine', 'ejs');
+
+let url = "mongodb://localhost:27017/peterdb";
 
 // define a middleware that can be used by the server to read JSON payload.
 app.use(bodyParser.json());
@@ -26,8 +26,28 @@ connection.once("open", function() {
 
 //general route
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/index.html");
+    res.render("index");
   });
+
+  app.get("/login", (req, res) => {
+    res.render("login");
+  });
+
+  app.post("/login", (req, res) => {
+ 
+  });
+
+  app.get("/register", (req, res) => {
+    res.render("register");
+  });
+
+  app.post("/register", (req, res) => {
+    req.body.name
+    req.body.password
+  });
+
+
+  
 
 
   //admin path to add new product
