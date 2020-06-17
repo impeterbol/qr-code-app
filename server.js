@@ -1,12 +1,17 @@
 const express = require ('express');
-const app = express();
 const mongoose = require("mongoose");
 const QRCode = require('qrcode');
 const PORT = process.env.PORT || 3000;
 const User = require("./models/User")
 const bodyParser = require('body-parser');
+
+
+//init app
+const app = express();
+
 //adding ejs for dynamic rendering
 app.set('view engine', 'ejs');
+
 
 let url = "mongodb://localhost:27017/peterdb";
 
@@ -23,6 +28,8 @@ connection.once("open", function() {
 
     app.listen(PORT,()=> console.log("server is running on " + PORT));
   });
+
+
 
 //general route
 app.get("/", (req, res) => {
@@ -63,9 +70,11 @@ app.get("/", (req, res) => {
 
 //once added by admin - form will post product info via this path - new product route
 app.post("/addingnewproduct", (req, res) => {
+console.log("HERE REQ BODY" + req.body);
+
+
     var myData = new User(req.body);
-    var thisIsId = myData._id;
-    var thisIsUrl = `http://localhost:3000/${thisIsId}`;
+  
     myData.save()
 
       .then(item => {

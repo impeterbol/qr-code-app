@@ -13,7 +13,8 @@ const UserSchema = new Schema({
     shape: String,
     color: String,
     comment: String,
-    comment2: String
+    comment2: String,
+    
 });
 
 const User = mongoose.model("User", UserSchema);

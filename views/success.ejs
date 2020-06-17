@@ -63,7 +63,7 @@
 
             <div class="row">
                  <div class="col-12"> 
-                    <p class="qrGeneral">Qr code contains a direct link to this report's verification page.</p>
+          
 
                     <div id="qrcode"></div>
                 </div>
@@ -72,7 +72,8 @@
             <div class="row">
                 <div class="col-12"> 
                    <p class="linkText">Direct link to the verification page:
-                       http://localhost:3000/<%= item._id%>.</p>
+                      <a href="http://localhost:3000/<%= item._id%>" > Follow to the product page via link http://localhost:3000/<%= item._id%> </a>
+
                        <% }; %>
                </div>
            </div>
