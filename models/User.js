@@ -14,7 +14,7 @@ const UserSchema = new Schema({
     color: String,
     comment: String,
     comment2: String,
-    
+    origin:String
 });
 
 const User = mongoose.model("User", UserSchema);
