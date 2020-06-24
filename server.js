@@ -2,6 +2,7 @@ const express = require ('express');
 const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
+
 //routes
 const rApiFetch = require(__dirname + "/routes/get-api-fetch");
 const rGetPathAdmin = require(__dirname + "/routes/get-path-admin");
@@ -23,7 +24,9 @@ let url = "mongodb://localhost:27017/peterdb";
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true }, (err,res)=>{
+  if(err){console.log (err + "Database error")}
+});
 
 const connection = mongoose.connection;
 
