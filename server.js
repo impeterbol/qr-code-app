@@ -57,6 +57,7 @@ app.get("/", (req, res) => {
   app.post("/register", (req, res) => {
     req.body.name
     req.body.password
+    req.body.email
   });
 
 
